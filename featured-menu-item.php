@@ -37,59 +37,67 @@ define( 'FEATURED_MENU_ITEM_VERSION', '1.0.0' );
 /**
  * Get the actual date of the week.
  *
- * @return void
+ * @return string
  */
 function get_weekday_feature() {
 	$tag_name = 'featured-';
-    return  $tag_name . strtolower( date( 'l' ) );
+	return  $tag_name . strtolower( gmdate( 'l' ) ); // phpcs:ignore
 }
+
+
+
+
 /**
- * Get the Featrued Menu Item.
+ * Get the Featured Menu Item. 
  *
  * @return void
  */
 function fmi_get_featured_menu_item() {
 
-
-	ob_start();
-
-	$args = array( 
+	$args          = array(
 		'post_type'      => 'product',
-		'posts_per_page' => 1, 
-		'product_tag'    => array( get_weekday_feature() )
+		'posts_per_page' => 1,
+		'product_tag'    => array( get_weekday_feature() ),
 	);
-	$loop = new WP_Query( $args );
+	$loop          = new WP_Query( $args );
 	$product_count = $loop->post_count;
 
+	if ( $product_count > 0 ) {
+		$product = wc_get_product( $loop->post->ID );
+	?>
 
-	if( $product_count > 0 ){
-		echo '<ul class="products">';
-		while ( $loop->have_posts() ) : $loop->the_post(); 
-			global $product;
-			global $post;
+<div id="product-description-container">
 
-			echo "<li>" . $loop->post->ID. " </li>";
+	<h1>Today's Featured Menu</h1>
 
-			$product = wc_get_product( $loop->post->ID );
-  
-				// Now you have access to (see above)...
-				
-				echo $product->get_type();
-				echo $product->get_name();
-				echo $product->get_price();
-				$product->get_image();
-				echo $product->get_short_description();
-				echo $product->add_to_cart_text();
+	<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
+	<h4><?php echo $product->get_title(); ?></h4></a>
 
-		endwhile;
+	<div id="product-image1">
+			<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
+			<?php echo $product->get_image('thumbnail');?>
+			</a>
+	</div> <!-- End Product Image -->
 
-		echo '</ul>';
-	}else{
+	<h6><?php //echo $product->get_price_html(); ?></h6>
+	<p><?php  echo $product->get_short_description(); ?></p>
+	<a href="<?php the_permalink(); ?>" class="button button wp-block-button__link">Add to Cart</a><?php
+	if ( $available ) {
+		?><a href="<?php $add_to_cart = do_shortcode('[add_to_cart_url id="'.$post->ID.'"]');
+		echo $add_to_cart;
+	?>" class="button wp-block-button__link">Buy now</a>
+					<?php
+				}
+				?>
+
+</div>
+<?php
+	
+	} else{
 		echo 'No product matching your criteria.';
 	}
 
-	$result =  ob_get_clean();
-	echo $result;
+	
 
 }
 add_shortcode( 'featured-menu-item', 'fmi_get_featured_menu_item' );
