@@ -1,3 +1,4 @@
+<?php
 /**
  * @package           Featured Menu Item
  * @author            Jason Vanstone
@@ -18,3 +19,17 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Update URI:        https://example.com/my-plugin/
  */
+
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
+ * Currently plugin version.
+ * Start at version 1.0.0 and use SemVer - https://semver.org
+ * Rename this for your plugin and update it as you release new versions.
+ */
+define( 'FEATURED_MENU_ITEM_VERSION', '1.0.0' );
+
+
