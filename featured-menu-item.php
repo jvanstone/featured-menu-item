@@ -33,3 +33,21 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'FEATURED_MENU_ITEM_VERSION', '1.0.0' );
 
 
+/**
+ * Get the Featrued Menu Item.
+ *
+ * @return void
+ */
+function fmi_get_featured_menu_item() {
+
+	$get_products_tags = get_terms( 'featured_monday' );
+	$tag_lists = array();
+	if ( ! empty( $get_products_tags ) && ! is_wp_error( $get_products_tags ) ){
+		foreach ( $get_products_tags as $tag ) {
+			$tag_lists[] = $tag->name;
+		}
+	}
+
+}
+add_shortcode( 'featured-menu-item', 'fmi_get_featured_menu_item' );
+
