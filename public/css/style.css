@@ -4,4 +4,13 @@
 */
 
 /** Add Quantity **/
- .
+ .add-quantity-box {
+    display: flex;
+    flex-direction: row;
+ }
+
+.quantity {
+    
+    width: 20vw!important;
+    
+}

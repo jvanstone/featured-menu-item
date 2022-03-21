@@ -39,11 +39,11 @@ define( 'FEATURED_MENU_ITEM_VERSION', '1.0.0' );
  *
  * @return mixed
  */
-function wpdocs_theme_name_scripts() {
-    wp_enqueue_style( 'fmi-style', get_template_directory_uri() . '/public/css/style.css', array(), '1.00', false );
-    wp_enqueue_script( 'fmi-add', get_template_directory_uri() . '/public/js/add-quantity.js', array(), '1.0.0', true );
+function fmi_theme_name_scripts() {
+    wp_enqueue_style( 'fmi-style',	plugins_url( '/public/css/style.css', __FILE__ ) );
+    wp_enqueue_script( 'fmi-add', plugins_url( '/public/js/add-quantity.js', __FILE__ ), array(), '1.0.0', true );
 }
-add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
+add_action( 'wp_enqueue_scripts', 'fmi_theme_name_scripts' );
 /**
  * Get the actual date of the week.
  *
@@ -64,7 +64,7 @@ function get_weekday_feature() {
  */
 function fmi_add_to_cart_button( $product ) {
 	?>
-   <div class-="add-quantity-box"> 
+  
 	   <?php
 	if ( $product && $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() && ! $product->is_sold_individually() ) {
 		// Get the necessary classes
@@ -87,7 +87,7 @@ function fmi_add_to_cart_button( $product ) {
 		);
 	}
 	?>
-   </div>
+ 
      <?php
 	return $html;
 }
@@ -127,9 +127,11 @@ function fmi_get_featured_menu_item() {
 
 	<h6><?php //echo $product->get_price_html(); ?></h6>
 	<p><?php  echo $product->get_short_description(); ?></p>
-	<?php echo fmi_add_to_cart_button( $product ); ?>
 
-	
+	<div class="add-quantity-box"> 
+	<?php echo fmi_add_to_cart_button( $product ); ?>
+	</div>
+
 </div>
 <?php
 
@@ -139,12 +141,3 @@ function fmi_get_featured_menu_item() {
 
 }
 add_shortcode( 'featured-menu-item', 'fmi_get_featured_menu_item' );
-
-add_action( 'wp_footer' , 'archives_quantity_fields_script' );
-function archives_quantity_fields_script(){
-	?>
-	<script type='text/javascript'>
-	
-	</script>
-	<?php
-}
