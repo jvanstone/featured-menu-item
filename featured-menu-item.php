@@ -8,8 +8,8 @@
  * @wordpress-plugin
  * Plugin Name:       Featured Menu Item
  * Plugin URI:        
- * Description:       active the pluign by useing shortcode [featured-menu-item]
- * Version:           1.0.0
+ * Description:       To active the pluign use shortcode [featured-menu-item]
+ * Version:           1.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Jason Vanstone
