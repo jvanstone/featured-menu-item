@@ -7,8 +7,8 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Featured Menu Item
- * Plugin URI:        https://example.com/plugin-name
- * Description:       Description of the plugin.
+ * Plugin URI:        
+ * Description:       active the pluign by useing shortcode [featured-menu-item]
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
@@ -40,11 +40,9 @@ define( 'FEATURED_MENU_ITEM_VERSION', '1.0.0' );
  * @return string
  */
 function get_weekday_feature() {
-	$tag_name = 'featured-';
+	$tag_name = 'feature-';
 	return  $tag_name . strtolower( gmdate( 'l' ) ); // phpcs:ignore
 }
-
-
 
 
 /**
@@ -92,12 +90,10 @@ function fmi_get_featured_menu_item() {
 
 </div>
 <?php
-	
-	} else{
+
+	} else {
 		echo 'No product matching your criteria.';
 	}
-
-	
 
 }
 add_shortcode( 'featured-menu-item', 'fmi_get_featured_menu_item' );
