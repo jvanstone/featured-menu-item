@@ -54,8 +54,6 @@ function get_weekday_feature() {
 	return  $tag_name . strtolower( gmdate( 'l' ) ); // phpcs:ignore
 }
 
-
-
 /**
  * Create an add to cart  button for Feature. Has a support js file on public/js/add-quantity.js
  *
@@ -86,9 +84,7 @@ function fmi_add_to_cart_button( $product ) {
 			esc_html( $product->add_to_cart_text() )
 		);
 	}
-	?>
- 
-     <?php
+
 	return $html;
 }
 
@@ -117,16 +113,14 @@ function fmi_get_featured_menu_item() {
 
 	if ( $product_count > 0 ) {
 		$product = wc_get_product( $loop->post->ID );
-
 	?>
-
 
 	<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
 	<h4><?php echo $product->get_title(); ?></h4></a>
 
 	<div id="product-image1">
 			<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
-			<?php echo $product->get_image('thumbnail');?>
+			<?php echo $product->get_image('full');?>
 			</a>
 	</div> <!-- End Product Image -->
 
