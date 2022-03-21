@@ -40,8 +40,8 @@ define( 'FEATURED_MENU_ITEM_VERSION', '1.0.0' );
  * @return mixed
  */
 function wpdocs_theme_name_scripts() {
-    wp_enqueue_style( 'fmi-stle', et_template_directory_uri() . '/public/css/style.css', array(), '1.00', false );
-    wp_enqueue_script( 'script-name', get_template_directory_uri() . '/public/js/example.js', array(), '1.0.0', true );
+    wp_enqueue_style( 'fmi-style', get_template_directory_uri() . '/public/css/style.css', array(), '1.00', false );
+    wp_enqueue_script( 'fmi-add', get_template_directory_uri() . '/public/js/add-quantity.js', array(), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
 /**
@@ -57,7 +57,7 @@ function get_weekday_feature() {
 
 
 /**
- * Create an add to cart  button for Feature
+ * Create an add to cart  button for Feature. Has a support js file on public/js/add-quantity.js
  *
  * @param  mixed $product
  * @return string
