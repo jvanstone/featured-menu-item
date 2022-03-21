@@ -33,6 +33,16 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'FEATURED_MENU_ITEM_VERSION', '1.0.0' );
 
 
+
+/**
+ * Get the actual date of the week.
+ *
+ * @return void
+ */
+function get_weekday_feature() {
+	$tag_name = 'featured-';
+    return  $tag_name . strtolower( date( 'l' ) );
+}
 /**
  * Get the Featrued Menu Item.
  *
@@ -40,13 +50,36 @@ define( 'FEATURED_MENU_ITEM_VERSION', '1.0.0' );
  */
 function fmi_get_featured_menu_item() {
 
-	$get_products_tags = get_terms( 'featured_monday' );
-	$tag_lists = array();
-	if ( ! empty( $get_products_tags ) && ! is_wp_error( $get_products_tags ) ){
-		foreach ( $get_products_tags as $tag ) {
-			$tag_lists[] = $tag->name;
-		}
+
+	ob_start();
+
+	$args = array( 
+		'post_type'      => 'product',
+		'posts_per_page' => 1, 
+		'product_tag'    => array( get_weekday_feature() )
+	);
+	$loop = new WP_Query( $args );
+	$product_count = $loop->post_count;
+
+
+	if( $product_count > 0 ){
+		echo '<ul class="products">';
+		while ( $loop->have_posts() ) : $loop->the_post(); 
+			global $product;
+			global $post;
+
+			echo "<li>" . $loop->post->ID. " </li>";
+
+
+		endwhile;
+
+		echo '</ul>';
+	}else{
+		echo 'No product matching your criteria.';
 	}
+
+	$result =  ob_get_clean();
+	echo $result;
 
 }
 add_shortcode( 'featured-menu-item', 'fmi_get_featured_menu_item' );
