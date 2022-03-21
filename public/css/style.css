@@ -2,10 +2,7 @@
  Custom CSS
 
 */
-.product-description-container { 
-    position: relative;
 
-}
 /** Add Quantity **/
  .add-quantity-box {
     display: flex;
