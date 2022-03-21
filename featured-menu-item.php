@@ -70,6 +70,16 @@ function fmi_get_featured_menu_item() {
 
 			echo "<li>" . $loop->post->ID. " </li>";
 
+			$product = wc_get_product( $loop->post->ID );
+  
+				// Now you have access to (see above)...
+				
+				echo $product->get_type();
+				echo $product->get_name();
+				echo $product->get_price();
+				$product->get_image();
+				echo $product->get_short_description();
+				echo $product->add_to_cart_text();
 
 		endwhile;
 
