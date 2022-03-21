@@ -11,6 +11,7 @@
 
 .quantity {
     
-    width: 20vw!important;
+    max-width: 8vw;
+    margin: 0 1rem;
     
 }
