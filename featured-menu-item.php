@@ -99,7 +99,7 @@ function fmi_add_to_cart_button( $product ) {
  * @return void
  */
 function fmi_get_featured_menu_item() {
-
+	ob_start();
 	$args          = array(
 		'post_type'      => 'product',
 		'posts_per_page' => 1,
@@ -108,13 +108,18 @@ function fmi_get_featured_menu_item() {
 	$loop          = new WP_Query( $args );
 	$product_count = $loop->post_count;
 
-	if ( $product_count > 0 ) {
-		$product = wc_get_product( $loop->post->ID );
 	?>
-
-<div id="product-description-container">
+	<div class="product-description-container">
 
 	<h1>Today's Featured Menu</h1>
+
+	<?php
+
+	if ( $product_count > 0 ) {
+		$product = wc_get_product( $loop->post->ID );
+
+	?>
+
 
 	<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
 	<h4><?php echo $product->get_title(); ?></h4></a>
@@ -130,14 +135,23 @@ function fmi_get_featured_menu_item() {
 
 	<div class="add-quantity-box"> 
 	<?php echo fmi_add_to_cart_button( $product ); ?>
-	</div>
-
+	
+	
 </div>
 <?php
 
 	} else {
 		echo 'No product matching your criteria.';
 	}
+	?>
+	</div>
+	<?php
+	return ob_get_clean();
 
 }
-add_shortcode( 'featured-menu-item', 'fmi_get_featured_menu_item' );
+
+function fmi_make_feature() {
+	return fmi_get_featured_menu_item();
+}
+
+add_shortcode( 'featured-menu-item', 'fmi_make_feature', 99 );
