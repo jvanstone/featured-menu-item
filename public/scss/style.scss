@@ -1,0 +1,24 @@
+/**
+ Custom CSS
+ Version 1.0.0
+
+*/
+
+/** Add Quantity **/
+
+.fmi-container { 
+   text-align: center;
+   
+   #product-image1 {
+      width: 100%;
+   }
+    
+ .add-quantity-box {
+    display: flex;
+    flex-direction: row;
+
+    .quantity { width: 20vw; }
+ }
+
+}
+

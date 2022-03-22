@@ -3,10 +3,15 @@
  Version 1.0.0
 
 */
-
 /** Add Quantity **/
- .add-quantity-box {
-    display: flex;
-    flex-direction: row;
- }
+.fmi-container { text-align: center; }
 
+.fmi-container #product-image1 { width: 100%; }
+
+.fmi-container .add-quantity-box { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; }
+
+.fmi-container .add-quantity-box .quantity { width: 20vw; }
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3R5bGUuY3NzIiwic291cmNlcyI6WyJzdHlsZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7O0VBSUU7QUFFRixvQkFBb0I7QUFFcEIsQUFBQSxjQUFjLENBQUMsRUFDWixVQUFVLEVBQUUsTUFBTSxHQWFwQjs7QUFkRCxBQUdHLGNBSFcsQ0FHWCxlQUFlLENBQUMsRUFDYixLQUFLLEVBQUUsSUFBSSxHQUNiOztBQUxKLEFBT0MsY0FQYSxDQU9iLGlCQUFpQixDQUFDLEVBQ2YsT0FBTyxFQUFFLElBQUksRUFDYixjQUFjLEVBQUUsR0FBRyxHQUdyQjs7QUFaRixBQVdJLGNBWFUsQ0FPYixpQkFBaUIsQ0FJZCxTQUFTLENBQUMsRUFBRSxLQUFLLEVBQUUsSUFBSSxHQUFJIn0= */
+
+/*# sourceMappingURL=style.css.map */

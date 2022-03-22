@@ -1,0 +1,4 @@
+.fmi-container{text-align:center}
+.fmi-container #product-image1{width:100%}
+.fmi-container .add-quantity-box{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}
+.fmi-container .add-quantity-box .quantity{width:20vw}

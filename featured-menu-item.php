@@ -105,7 +105,7 @@ function fmi_get_featured_menu_item() {
 	$product_count = $loop->post_count;
 
 	?>
-	<div class="product-description-container">
+	<div class="fmi-container">
 
 	<h1>Today's Featured Menu</h1>
 
