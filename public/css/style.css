@@ -9,7 +9,7 @@
     flex-direction: row;
  }
 
-.quantity {
+ .add-quantity-box > .quantity {
     
     max-width: 8vw;
     margin: 0 1rem;
