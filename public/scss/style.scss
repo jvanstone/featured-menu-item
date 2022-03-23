@@ -16,8 +16,8 @@
       img { width: 30vw; }
    }
     
-   .p {
-      font-size: 2rem;
+   p {
+      font-size: 2.5rem;
       line-height: 2.1;
    }
    .add-quantity-box {
@@ -29,7 +29,7 @@
 
 }
 
-@media screen and (max-width: 544) {
+@media (max-width: 544px) {
 
    .fmi-container { 
       h1 { font-size: 1.75rem; }
@@ -41,7 +41,7 @@
          img { width: 100%; }
       }
       
-      .p {
+      p {
          font-size: 1.5rem;
          line-height: 2.1;
    }
