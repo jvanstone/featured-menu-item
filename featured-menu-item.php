@@ -7,13 +7,13 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Featured Menu Item
- * Plugin URI:        
+ * Plugin URI:        https://vanstoneline.com
  * Description:       To active the pluign use shortcode [featured-menu-item]
- * Version:           1.1.0
+ * Version:           1.5.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Jason Vanstone
- * Author URI:        
+ * Author URI:        https://vanstoneline.com
  * Text Domain:       plugin-fmi
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -32,16 +32,14 @@ if ( ! defined( 'WPINC' ) ) {
  */
 define( 'FEATURED_MENU_ITEM_VERSION', '1.0.0' );
 
-
-
 /**
  * Enqueue Style sheets
  *
  * @return mixed
  */
 function fmi_theme_name_scripts() {
-    wp_enqueue_style( 'fmi-style',	plugins_url( '/public/css/style.css', __FILE__ ) );
-    wp_enqueue_script( 'fmi-add', plugins_url( '/public/js/add-quantity.js', __FILE__ ), array(), '1.0.0', true );
+    wp_enqueue_style( 'fmi-style',	plugins_url( '/public/css/style.css', __FILE__ ) ); // phpcs:ignore 
+	wp_enqueue_script( 'fmi-add', plugins_url( '/public/js/add-quantity.js', __FILE__ ), array(), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'fmi_theme_name_scripts' );
 /**
@@ -57,24 +55,24 @@ function get_weekday_feature() {
 /**
  * Create an add to cart  button for Feature. Has a support js file on public/js/add-quantity.js
  *
- * @param  mixed $product
+ * @param  mixed $product // Get the product.
  * @return string
  */
 function fmi_add_to_cart_button( $product ) {
 	?>
-  
-	   <?php
+	<?php
 	if ( $product && $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() && ! $product->is_sold_individually() ) {
-		// Get the necessary classes
-		$class = implode( ' ', array_filter( array(
+		// Get the necessary classes.
+		$class = implode(' ', array_filter( array(
 			'button',
 			'product_type_' . $product->get_type(),
 			$product->is_purchasable() && $product->is_in_stock() ? 'add_to_cart_button' : '',
 			$product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : '',
 		) ) );
 
-		// Embedding the quantity field to Ajax add to cart button
-		$html = sprintf( '%s<a rel="nofollow" href="%s" data-quantity="%s" data-product_id="%s" data-product_sku="%s" class="%s">%s</a>',
+		// Embedding the quantity field to Ajax add to cart button.
+		$html = sprintf(
+			'%s<a rel="nofollow" href="%s" data-quantity="%s" data-product_id="%s" data-product_sku="%s" class="%s">%s</a>',
 			woocommerce_quantity_input( array(), $product, false ),
 			esc_url( $product->add_to_cart_url() ),
 			esc_attr( isset( $quantity ) ? $quantity : 1 ),
@@ -90,7 +88,7 @@ function fmi_add_to_cart_button( $product ) {
 
 
 /**
- * Get the Featured Menu Item. 
+ * Get the Featured Menu Item.
  *
  * @return void
  */
@@ -125,27 +123,28 @@ function fmi_get_featured_menu_item() {
 	</div> <!-- End Product Image -->
 
 	<h6><?php //echo $product->get_price_html(); ?></h6>
-	<p><?php  echo $product->get_short_description(); ?></p>
+	<p><?php echo $product->get_short_description(); ?></p>
 
 	<div class="add-quantity-box"> 
-	<?php echo fmi_add_to_cart_button( $product ); ?>
-	
-	
-</div>
-<?php
+		<?php echo fmi_add_to_cart_button( $product ); ?>
+	</div>
+		<?php
 
 	} else {
 		echo 'No product matching your criteria.';
 	}
 	?>
-	</div>
+	</div> 
 	<?php
 	return ob_get_clean();
-
 }
 
+/**
+ * Execute the Features Product.
+ *
+ * @return string
+ */
 function fmi_make_feature() {
 	return fmi_get_featured_menu_item();
 }
-
 add_shortcode( 'featured-menu-item', 'fmi_make_feature', 99 );
