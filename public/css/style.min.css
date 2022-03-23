@@ -5,9 +5,9 @@
 .fmi-container #product-image1 img{width:30vw}
 .fmi-container .p{font-size:2rem;line-height:2.1}
 .fmi-container .add-quantity-box{margin-top:2rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}
-@media screen and (max-width:544){h1{font-size:1.75rem}
-h4{font-size:1.25rem;line-height:1.5}
-#product-image1{width:100%}
-#product-image1 img{width:100%}
-.p{font-size:1.5rem;line-height:2.1}
+@media screen and (max-width:544){.fmi-container h1{font-size:1.75rem}
+.fmi-container h4{font-size:1.25rem;line-height:1.5}
+.fmi-container #product-image1{width:100%}
+.fmi-container #product-image1 img{width:100%}
+.fmi-container .p{font-size:1.5rem;line-height:2.1}
 }
