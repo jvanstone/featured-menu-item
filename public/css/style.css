@@ -6,12 +6,18 @@
 /** Add Quantity **/
 .fmi-container { text-align: center; }
 
+.fmi-container h1 { font-size: 3rem; }
+
+.fmi-container h4 { font-size: 2rem; line-height: 2; }
+
 .fmi-container #product-image1 { width: 100%; }
 
-.fmi-container .add-quantity-box { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; }
+.fmi-container #product-image1 img { width: 30vw; }
 
-.fmi-container .add-quantity-box .quantity { width: 20vw; }
+.fmi-container .p { font-size: 1.5rem; line-height: 2; }
 
-/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3R5bGUuY3NzIiwic291cmNlcyI6WyJzdHlsZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7O0VBSUU7QUFFRixvQkFBb0I7QUFFcEIsQUFBQSxjQUFjLENBQUMsRUFDWixVQUFVLEVBQUUsTUFBTSxHQWFwQjs7QUFkRCxBQUdHLGNBSFcsQ0FHWCxlQUFlLENBQUMsRUFDYixLQUFLLEVBQUUsSUFBSSxHQUNiOztBQUxKLEFBT0MsY0FQYSxDQU9iLGlCQUFpQixDQUFDLEVBQ2YsT0FBTyxFQUFFLElBQUksRUFDYixjQUFjLEVBQUUsR0FBRyxHQUdyQjs7QUFaRixBQVdJLGNBWFUsQ0FPYixpQkFBaUIsQ0FJZCxTQUFTLENBQUMsRUFBRSxLQUFLLEVBQUUsSUFBSSxHQUFJIn0= */
+.fmi-container .add-quantity-box { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3R5bGUuY3NzIiwic291cmNlcyI6WyJzdHlsZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7O0VBSUU7QUFFRixvQkFBb0I7QUFFcEIsQUFBQSxjQUFjLENBQUMsRUFDWixVQUFVLEVBQUUsTUFBTSxHQXFCcEI7O0FBdEJELEFBR0csY0FIVyxDQUdYLEVBQUUsQ0FBQyxFQUFFLFNBQVMsRUFBRSxJQUFJLEdBQUk7O0FBSDNCLEFBSUcsY0FKVyxDQUlYLEVBQUUsQ0FBQyxFQUFFLFNBQVMsRUFBRSxJQUFJLEVBQUUsV0FBVyxFQUFFLENBQUMsR0FBRzs7QUFKMUMsQUFNRyxjQU5XLENBTVgsZUFBZSxDQUFDLEVBQ2IsS0FBSyxFQUFFLElBQUksR0FHYjs7QUFWSixBQVNNLGNBVFEsQ0FNWCxlQUFlLENBR1osR0FBRyxDQUFDLEVBQUUsS0FBSyxFQUFFLElBQUksR0FBSTs7QUFUM0IsQUFZRyxjQVpXLENBWVgsRUFBRSxDQUFDLEVBQ0EsU0FBUyxFQUFFLE1BQU0sRUFDakIsV0FBVyxFQUFFLENBQUMsR0FDakI7O0FBZkgsQUFnQkcsY0FoQlcsQ0FnQlgsaUJBQWlCLENBQUMsRUFDZixPQUFPLEVBQUUsSUFBSSxFQUNiLGNBQWMsRUFBRSxHQUFHLEVBQ25CLGVBQWUsRUFBRSxNQUFNLEdBQ3pCIn0= */
 
 /*# sourceMappingURL=style.css.map */

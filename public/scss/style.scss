@@ -4,21 +4,28 @@
 
 */
 
-/** Add Quantity **/
 
 .fmi-container { 
    text-align: center;
+
+   h1 { font-size: 3rem; }
+   h4 { font-size: 2rem; line-height: 2;}
    
    #product-image1 {
       width: 100%;
+
+      img { width: 30vw; }
    }
     
- .add-quantity-box {
-    display: flex;
-    flex-direction: row;
-
-    .quantity { width: 20vw; }
- }
+   .p {
+      font-size: 1.5rem;
+      line-height: 2;
+  }
+   .add-quantity-box {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+   }
 
 }
 
