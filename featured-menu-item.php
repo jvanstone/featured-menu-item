@@ -8,8 +8,8 @@
  * @wordpress-plugin
  * Plugin Name:       Featured Menu Item
  * Plugin URI:        https://vanstoneline.com
- * Description:       To active the pluign use shortcode [featured-menu-item]
- * Version:           2.00
+ * Description:       To active the pluign use shortcode [featured-menu-item] [featured-menu-daily feaure-day=""]
+ * Version:           2.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Jason Vanstone
