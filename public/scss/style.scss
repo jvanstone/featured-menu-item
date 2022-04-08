@@ -26,12 +26,39 @@
       flex-direction: row;
       justify-content: center;
 
+      
       a {
          height: 50%;
          align-self: center;
       }
    }
+}
 
+.fmi-daily-container {
+   
+   display: flex;   
+   justify-content: center;
+   
+   .half-side{ 
+      padding: 2rem;
+      //border: solid 1px #000;
+      flex-basis: 45%;
+      
+      h4 { margin-top: 2rem;}
+   
+      .add-quantity-box {
+         margin-top: 2rem;
+         display: flex;
+         flex-direction: row;
+         justify-content: center;
+
+         
+         a {
+            height: 50%;
+            align-self: center;
+         }
+      }
+   }
 }
 
 @media (max-width: 544px) {

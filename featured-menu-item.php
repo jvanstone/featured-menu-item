@@ -183,29 +183,35 @@ function fmi_get_featured_menu_daily( $data ) {
 	$product_count = $loop->post_count;
 
 	?>
-	<div class="fmi-container">
+	<div class="fmi-daily-container">
 
-	<?php
+		<?php
 
-	if ( $product_count > 0 ) {
-		$product = wc_get_product( $loop->post->ID );
-	?>
+		if ( $product_count > 0 ) {
+			$product = wc_get_product( $loop->post->ID );
+		?>
+		<div class="half-side">
+		<div id="product-image1">
+				<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
+				<?php echo $product->get_image('full');?>
+				</a>
+		</div> <!-- End Product Image -->
 
-	<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
-	<h4><?php echo $product->get_title(); ?></h4></a>
+		</div>
 
-	<div id="product-image1">
+		<div class="half-side">
 			<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
-			<?php echo $product->get_image('full');?>
-			</a>
-	</div> <!-- End Product Image -->
+			<h4><?php echo $product->get_title(); ?></h4></a>
 
-	<h6><?php //echo $product->get_price_html(); ?></h6>
-	<p><?php echo $product->get_short_description(); ?></p>
+			
+			<h6><?php //echo $product->get_price_html(); ?></h6>
+			<p><?php echo $product->get_short_description(); ?></p>
 
-	<div class="add-quantity-box"> 
-		<?php echo fmi_add_to_cart_button( $product ); ?>
-	</div>
+			<div class="add-quantity-box"> 
+				<?php echo fmi_add_to_cart_button( $product ); ?>
+			</div>
+		</div>
+	
 		<?php
 
 	} else {
