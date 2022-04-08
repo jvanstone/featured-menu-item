@@ -2,14 +2,14 @@
 /**
  * @package           Featured Menu Item
  * @author            Jason Vanstone
- * @copyright         2019 JV
+ * @copyright         2022 JV
  * @license           GPL-2.0-or-later
  *
  * @wordpress-plugin
  * Plugin Name:       Featured Menu Item
  * Plugin URI:        https://vanstoneline.com
  * Description:       To active the pluign use shortcode [featured-menu-item]
- * Version:           1.6.0
+ * Version:           2.00
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Jason Vanstone
