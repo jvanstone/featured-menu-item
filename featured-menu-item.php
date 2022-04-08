@@ -93,7 +93,9 @@ function fmi_add_to_cart_button( $product ) {
  * @return void
  */
 function fmi_get_featured_menu_item() {
+
 	ob_start();
+
 	$args          = array(
 		'post_type'      => 'product',
 		'posts_per_page' => 1,
@@ -106,6 +108,82 @@ function fmi_get_featured_menu_item() {
 	<div class="fmi-container">
 
 	<h1>Today's Featured Menu</h1>
+
+	<?php
+
+	if ( $product_count > 0 ) {
+		$product = wc_get_product( $loop->post->ID );
+		?>
+
+		<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
+		<h4><?php echo $product->get_title(); ?></h4></a>
+
+		<div id="product-image1">
+				<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
+				<?php echo $product->get_image('full');?>
+				</a>
+		</div> <!-- End Product Image -->
+
+		<h6><?php //echo $product->get_price_html(); ?></h6>
+		<p><?php echo $product->get_short_description(); ?></p>
+
+		<div class="add-quantity-box"> 
+			<?php echo fmi_add_to_cart_button( $product ); ?>
+		</div>
+		<?php
+
+	} else {
+		echo 'No product matching your criteria.';
+	}
+	?>
+	</div> 
+	<?php
+
+	return ob_get_clean();
+}
+
+/**
+ * Execute the Features Product.
+ *
+ * @return mixed
+ */
+function fmi_make_feature() {
+	return fmi_get_featured_menu_item( $data );
+}
+add_shortcode( 'featured-menu-item', 'fmi_make_feature', 99 );
+
+
+
+/**
+ * Display Featured Menu Item by day.
+ *
+ * @return void
+ */
+function fmi_get_featured_menu_daily( $data ) {
+
+
+	$data = shortcode_atts(
+		array(
+			'feature-day' => '',
+			//'attribute-2' => '',
+		),
+		$data
+	);
+
+	$attr1 = esc_attr( $data['feature-day'] );
+
+	ob_start();
+
+	$args          = array(
+		'post_type'      => 'product',
+		'posts_per_page' => 1,
+		'product_tag'    => array( $attr1 ),
+	);
+	$loop          = new WP_Query( $args );
+	$product_count = $loop->post_count;
+
+	?>
+	<div class="fmi-container">
 
 	<?php
 
@@ -136,15 +214,17 @@ function fmi_get_featured_menu_item() {
 	?>
 	</div> 
 	<?php
+
 	return ob_get_clean();
 }
 
+
 /**
- * Execute the Features Product.
+ * Execute the Features Product as a short code.
  *
- * @return string
+ * @return mixed
  */
-function fmi_make_feature() {
-	return fmi_get_featured_menu_item();
+function fmi_make_feature_daily( $data ) {
+	return fmi_get_featured_menu_daily( $data );
 }
-add_shortcode( 'featured-menu-item', 'fmi_make_feature', 99 );
+add_shortcode( 'featured-menu-daily', 'fmi_make_feature_daily', 99 );
