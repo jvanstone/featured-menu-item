@@ -199,12 +199,14 @@ function fmi_get_featured_menu_daily( $data ) {
 
 		</div>
 
+	 $
+
 		<div class="half-side">
 			<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
 			<h4><?php echo $product->get_title(); ?></h4></a>
 
 			
-			<h6><?php //echo $product->get_price_html(); ?></h6>
+			<h6><?php echo $product->get_price_html(); ?></h6>
 			<p><?php echo $product->get_short_description(); ?></p>
 
 			<div class="add-quantity-box"> 
