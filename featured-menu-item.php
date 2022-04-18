@@ -38,7 +38,7 @@ define( 'FEATURED_MENU_ITEM_VERSION', '1.0.0' );
  * @return mixed
  */
 function fmi_theme_name_scripts() {
-    wp_enqueue_style( 'fmi-style',	plugins_url( '/public/css/style.css', __FILE__ ) ); // phpcs:ignore 
+	wp_enqueue_style( 'fmi-style',	plugins_url( '/public/css/style.css', __FILE__ ) ); // phpcs:ignore 
 	wp_enqueue_script( 'fmi-add', plugins_url( '/public/js/add-quantity.js', __FILE__ ), array(), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'fmi_theme_name_scripts' );
@@ -310,7 +310,7 @@ function fmi_get_featured_menu_daily( $data ) {
 
 		</div>
 
-	 $
+
 
 		<div class="half-side">
 			<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
@@ -337,6 +337,77 @@ function fmi_get_featured_menu_daily( $data ) {
 	return ob_get_clean();
 }
 
+function fmi_get_featured_menu_daily2( $data ) {
+
+	global $product;
+
+	$data = shortcode_atts(
+		array(
+			'feature-day' => '',
+			//'attribute-2' => '',
+		),
+		$data
+	);
+
+	$attr1 = esc_attr( $data['feature-day'] );
+
+	ob_start();
+
+	$args          = array(
+		'post_type'      => 'product',
+		'posts_per_page' => 1,
+		'product_tag'    => array( $attr1 ),
+	);
+	$loop          = new WP_Query( $args );
+	$product_count = $loop->post_count;
+	// Ensure visibility.
+	if ( empty( $product ) || ! $product->is_visible() ) {
+		return;
+	}
+	?>
+	<li <?php wc_product_class( '', $product ); ?>>
+		<?php
+		/**
+		 * Hook: woocommerce_before_shop_loop_item.
+		 *
+		 * @hooked woocommerce_template_loop_product_link_open - 10
+		 */
+		do_action( 'woocommerce_before_shop_loop_item' );
+
+		/**
+		 * Hook: woocommerce_before_shop_loop_item_title.
+		 *
+		 * @hooked woocommerce_show_product_loop_sale_flash - 10
+		 * @hooked woocommerce_template_loop_product_thumbnail - 10
+		 */
+		do_action( 'woocommerce_before_shop_loop_item_title' );
+
+		/**
+		 * Hook: woocommerce_shop_loop_item_title.
+		 *
+		 * @hooked woocommerce_template_loop_product_title - 10
+		 */
+		do_action( 'woocommerce_shop_loop_item_title' );
+
+		/**
+		 * Hook: woocommerce_after_shop_loop_item_title.
+		 *
+		 * @hooked woocommerce_template_loop_rating - 5
+		 * @hooked woocommerce_template_loop_price - 10
+		 */
+		do_action( 'woocommerce_after_shop_loop_item_title' );
+
+		/**
+		 * Hook: woocommerce_after_shop_loop_item.
+		 *
+		 * @hooked woocommerce_template_loop_product_link_close - 5
+		 * @hooked woocommerce_template_loop_add_to_cart - 10
+		 */
+		do_action( 'woocommerce_after_shop_loop_item' );
+		?>
+</li>
+<?php
+}
 
 /**
  * Execute the Features Product as a short code.
@@ -344,6 +415,6 @@ function fmi_get_featured_menu_daily( $data ) {
  * @return mixed
  */
 function fmi_make_feature_daily( $data ) {
-	return fmi_get_featured_menu_daily( $data );
+	return fmi_get_featured_menu_daily2( $data );
 }
 add_shortcode( 'featured-menu-daily', 'fmi_make_feature_daily', 99 );
