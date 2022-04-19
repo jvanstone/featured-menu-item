@@ -9,7 +9,7 @@
  * Plugin Name:       Featured Menu Item
  * Plugin URI:        https://vanstoneline.com
  * Description:       To active the pluign use shortcode [featured-menu-item] [featured-menu-daily feaure-day=""]
- * Version:           2.1.0
+ * Version:           3.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Jason Vanstone
@@ -38,7 +38,7 @@ define( 'FEATURED_MENU_ITEM_VERSION', '1.0.0' );
  * @return mixed
  */
 function fmi_theme_name_scripts() {
-    wp_enqueue_style( 'fmi-style',	plugins_url( '/public/css/style.css', __FILE__ ) ); // phpcs:ignore 
+	wp_enqueue_style( 'fmi-style',	plugins_url( '/public/css/style.css', __FILE__ ) ); // phpcs:ignore 
 	wp_enqueue_script( 'fmi-add', plugins_url( '/public/js/add-quantity.js', __FILE__ ), array(), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'fmi_theme_name_scripts' );
@@ -82,10 +82,20 @@ function fmi_add_to_cart_button( $product ) {
 			esc_html( $product->add_to_cart_text() )
 		);
 	}
-
 	return $html;
 }
 
+
+/** 
+ * Set up Products when product is grouped
+ */
+function fmi_create_group_view( $product) {
+	ob_start();
+			woocommerce_grouped_add_to_cart();
+			woocommerce_template_loop_add_to_cart();
+		$output = ob_get_clean();
+		return $output;
+}
 
 /**
  * Get the Featured Menu Item.
@@ -93,7 +103,7 @@ function fmi_add_to_cart_button( $product ) {
  * @return void
  */
 function fmi_get_featured_menu_item() {
-
+	global $product;
 	ob_start();
 
 	$args          = array(
@@ -128,8 +138,14 @@ function fmi_get_featured_menu_item() {
 		<p><?php echo $product->get_short_description(); ?></p>
 
 		<div class="add-quantity-box"> 
-			<?php echo fmi_add_to_cart_button( $product ); ?>
-		</div>
+					<?php
+					if ( $product->is_type( 'grouped' ) ) {
+						echo fmi_create_group_view( $product );
+					} else {
+						echo fmi_add_to_cart_button( $product );
+					}
+					?>
+				</div>
 		<?php
 
 	} else {
@@ -148,7 +164,7 @@ function fmi_get_featured_menu_item() {
  * @return mixed
  */
 function fmi_make_feature() {
-	return fmi_get_featured_menu_item( $data );
+	return fmi_get_featured_menu_item();
 }
 add_shortcode( 'featured-menu-item', 'fmi_make_feature', 99 );
 
@@ -160,12 +176,11 @@ add_shortcode( 'featured-menu-item', 'fmi_make_feature', 99 );
  * @return void
  */
 function fmi_get_featured_menu_daily( $data ) {
-
+	global $product;
 
 	$data = shortcode_atts(
 		array(
 			'feature-day' => '',
-			//'attribute-2' => '',
 		),
 		$data
 	);
@@ -181,51 +196,52 @@ function fmi_get_featured_menu_daily( $data ) {
 	);
 	$loop          = new WP_Query( $args );
 	$product_count = $loop->post_count;
-
 	?>
+
 	<div class="fmi-daily-container">
 
 		<?php
 
 		if ( $product_count > 0 ) {
 			$product = wc_get_product( $loop->post->ID );
-		?>
-		<div class="half-side">
-		<div id="product-image1">
-				<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
-				<?php echo $product->get_image('full');?>
-				</a>
-		</div> <!-- End Product Image -->
-
-		</div>
-
-	 $
-
-		<div class="half-side">
-			<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
-			<h4><?php echo $product->get_title(); ?></h4></a>
-
-			
-			<h6><?php echo $product->get_price_html(); ?></h6>
-			<p><?php echo $product->get_short_description(); ?></p>
-
-			<div class="add-quantity-box"> 
-				<?php echo fmi_add_to_cart_button( $product ); ?>
+			?>
+			<div class="half-side">
+				<div id="product-image1">
+						<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
+						<?php echo $product->get_image( 'full' );?>
+						</a>
+				</div> <!-- End Product Image -->
 			</div>
-		</div>
-	
-		<?php
 
-	} else {
-		echo 'No product matching your criteria.';
-	}
-	?>
+			<div class="half-side">
+				<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
+				<h4><?php echo $product->get_title(); ?></h4></a>
+
+				<h6><?php //echo $product->get_price_html(); ?></h6>
+				<p><?php echo $product->get_short_description(); ?></p>
+
+				<div class="add-quantity-box"> 
+					<?php
+					if ( $product->is_type( 'grouped' ) ) {
+						echo fmi_create_group_view( $product);
+					} else {
+						echo fmi_add_to_cart_button( $product );
+					}
+					?>
+				</div>
+			</div>
+
+				<?php
+
+		} else {
+			echo esc_html( 'No product matching your criteria.' );
+		}
+		?>
 	</div> 
 	<?php
 
 	return ob_get_clean();
 }
-
 
 /**
  * Execute the Features Product as a short code.
@@ -235,4 +251,4 @@ function fmi_get_featured_menu_daily( $data ) {
 function fmi_make_feature_daily( $data ) {
 	return fmi_get_featured_menu_daily( $data );
 }
-add_shortcode( 'featured-menu-daily', 'fmi_make_feature_daily', 99 );
+add_shortcode( 'featured-menu-daily', 'fmi_make_feature_daily' );
