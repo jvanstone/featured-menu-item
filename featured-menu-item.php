@@ -135,7 +135,7 @@ function fmi_get_featured_menu_item() {
 		?>
 
 		<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
-		<h4><?php echo $product->get_title(); ?></h4></a>
+		<h4><?php echo esc_html( $product->get_title() ); ?></h4></a>
 
 		<div id="product-image1">
 				<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
@@ -143,7 +143,6 @@ function fmi_get_featured_menu_item() {
 				</a>
 		</div> <!-- End Product Image -->
 
-		<h6><?php //echo $product->get_price_html(); ?></h6>
 		<p><?php echo esc_html( $product->get_short_description() ); ?></p>
 
 		<div class="add-quantity-box"> 
@@ -182,6 +181,7 @@ add_shortcode( 'featured-menu-item', 'fmi_make_feature', 99 );
 /**
  * Display Featured Menu Item by day.
  *
+ * @param  mixed $data // Get the data from shortcode.
  * @return string
  */
 function fmi_get_featured_menu_daily( $data ) {
@@ -224,17 +224,16 @@ function fmi_get_featured_menu_daily( $data ) {
 
 			<div class="half-side">
 				<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
-				<h4><?php echo $product->get_title(); ?></h4></a>
+				<h4><?php echo esc_html( $product->get_title() ); ?></h4></a>
 
-				<h6><?php //echo $product->get_price_html(); ?></h6>
-				<p><?php echo $product->get_short_description(); ?></p>
+				<p><?php echo esc_html( $product->get_short_description() ); ?></p>
 
 				<div class="add-quantity-box"> 
 					<?php
 					if ( $product->is_type( 'grouped' ) ) {
-						echo fmi_create_group_view( $product);
+						echo fmi_create_group_view( $product ); //phpcs:ignore
 					} else {
-						echo fmi_add_to_cart_button( $product );
+						echo fmi_add_to_cart_button( $product ); //phpcs:ignore
 					}
 					?>
 				</div>
@@ -255,7 +254,8 @@ function fmi_get_featured_menu_daily( $data ) {
 /**
  * Execute the Features Product as a short code.
  *
- * @return mixed
+ * @param  mixed $data // Get Data from shortcode.
+ * @return string
  */
 function fmi_make_feature_daily( $data ) {
 	return fmi_get_featured_menu_daily( $data );
