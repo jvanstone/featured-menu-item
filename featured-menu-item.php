@@ -138,8 +138,14 @@ function fmi_get_featured_menu_item() {
 		<p><?php echo $product->get_short_description(); ?></p>
 
 		<div class="add-quantity-box"> 
-			<?php echo fmi_add_to_cart_button( $product ); ?>
-		</div>
+					<?php
+					if ( $product->is_type( 'grouped' ) ) {
+						echo fmi_create_group_view( $product);
+					} else {
+						echo fmi_add_to_cart_button( $product );
+					}
+					?>
+				</div>
 		<?php
 
 	} else {
@@ -215,13 +221,13 @@ function fmi_get_featured_menu_daily( $data ) {
 				<p><?php echo $product->get_short_description(); ?></p>
 
 				<div class="add-quantity-box"> 
-				<?php
-				if ( $product->is_type( 'grouped' ) ) {
-					echo fmi_create_group_view( $product);
-				} else {
-					echo fmi_add_to_cart_button( $product );
-				}
-				?>
+					<?php
+					if ( $product->is_type( 'grouped' ) ) {
+						echo fmi_create_group_view( $product);
+					} else {
+						echo fmi_add_to_cart_button( $product );
+					}
+					?>
 				</div>
 			</div>
 
