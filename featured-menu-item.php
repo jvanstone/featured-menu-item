@@ -86,6 +86,17 @@ function fmi_add_to_cart_button( $product ) {
 }
 
 
+/** 
+ * Set up Products when product is grouped
+ */
+function fmi_create_group_view( $product) {
+	ob_start();
+			woocommerce_grouped_add_to_cart();
+			woocommerce_template_loop_add_to_cart();
+		$output = ob_get_clean();
+		return $output;
+}
+
 /**
  * Get the Featured Menu Item.
  *
@@ -206,13 +217,7 @@ function fmi_get_featured_menu_daily( $data ) {
 				<div class="add-quantity-box"> 
 				<?php
 				if ( $product->is_type( 'grouped' ) ) {
-
-					ob_start();
-						woocommerce_grouped_add_to_cart();
-						woocommerce_template_loop_add_to_cart();
-					$output = ob_get_clean();
-					echo $output;
-
+					echo fmi_create_group_view( $product);
 				} else {
 					echo fmi_add_to_cart_button( $product );
 				}
