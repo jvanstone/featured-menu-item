@@ -8,7 +8,7 @@
  * @wordpress-plugin
  * Plugin Name:       Featured Menu Item
  * Plugin URI:        https://vanstoneline.com
- * Description:       To active the pluign use shortcode [featured-menu-item] [featured-menu-daily feaure-day=""]
+ * Description:       To active the pluign use shortcode [featured-menu-item] [featured-menu-daily feature-day="choose-day"]
  * Version:           3.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
