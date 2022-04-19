@@ -103,7 +103,7 @@ function fmi_create_group_view( $product) {
  * @return void
  */
 function fmi_get_featured_menu_item() {
-
+	global $product;
 	ob_start();
 
 	$args          = array(
@@ -140,7 +140,7 @@ function fmi_get_featured_menu_item() {
 		<div class="add-quantity-box"> 
 					<?php
 					if ( $product->is_type( 'grouped' ) ) {
-						echo fmi_create_group_view( $product);
+						echo fmi_create_group_view( $product );
 					} else {
 						echo fmi_add_to_cart_button( $product );
 					}
