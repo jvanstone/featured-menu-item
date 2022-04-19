@@ -6,7 +6,7 @@
 .fmi-container p{font-size:1.1rem;line-height:2.1}
 .fmi-container .add-quantity-box{margin-top:2rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}
 .fmi-container .add-quantity-box a{height:50%;-ms-flex-item-align:center;align-self:center}
-.fmi-daily-container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}
+.fmi-daily-container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}
 .fmi-daily-container .half-side{padding:2rem;-ms-flex-preferred-size:45%;flex-basis:45%}
 .fmi-daily-container .half-side h4{margin-top:2rem}
 .fmi-daily-container .half-side .add-quantity-box{margin-top:2rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}
@@ -16,7 +16,7 @@
 .fmi-container #product-image1{width:100%}
 .fmi-container #product-image1 img{width:100%}
 .fmi-container p{font-size:1rem;line-height:2.1}
-.fmi-daily-container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}
+.fmi-daily-container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}
 .fmi-daily-container .half-side{padding:2rem;-ms-flex-preferred-size:100%;flex-basis:100%}
 .fmi-daily-container .half-side h4{margin-top:2rem}
 .fmi-daily-container .half-side .add-quantity-box{margin-top:2rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}
