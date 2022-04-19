@@ -8,7 +8,7 @@
  * @wordpress-plugin
  * Plugin Name:       Featured Menu Item
  * Plugin URI:        https://vanstoneline.com
- * Description:       To active the pluign use shortcode [featured-menu-item] [featured-menu-daily feaure-day=""]
+ * Description:       To active the pluign use shortcode [featured-menu-item] [featured-menu-daily feature-day="choose-day"]
  * Version:           3.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
@@ -63,12 +63,17 @@ function fmi_add_to_cart_button( $product ) {
 	<?php
 	if ( $product && $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() && ! $product->is_sold_individually() ) {
 		// Get the necessary classes.
-		$class = implode(' ', array_filter( array(
-			'button',
-			'product_type_' . $product->get_type(),
-			$product->is_purchasable() && $product->is_in_stock() ? 'add_to_cart_button' : '',
-			$product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : '',
-		) ) );
+		$class = implode(
+			' ',
+			array_filter(
+				array(
+					'button',
+					'product_type_' . $product->get_type(),
+					$product->is_purchasable() && $product->is_in_stock() ? 'add_to_cart_button' : '',
+					$product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : '',
+				)
+			)
+		);
 
 		// Embedding the quantity field to Ajax add to cart button.
 		$html = sprintf(
@@ -86,10 +91,14 @@ function fmi_add_to_cart_button( $product ) {
 }
 
 
-/** 
+/**
  * Set up Products when product is grouped
+ * fmi_create_group_view
+ *
+ * @param  mixed $product // Get the pr grouped product information.
+ * @return mixed
  */
-function fmi_create_group_view( $product) {
+function fmi_create_group_view( $product ) {
 	ob_start();
 			woocommerce_grouped_add_to_cart();
 			woocommerce_template_loop_add_to_cart();
@@ -100,7 +109,7 @@ function fmi_create_group_view( $product) {
 /**
  * Get the Featured Menu Item.
  *
- * @return void
+ * @return string
  */
 function fmi_get_featured_menu_item() {
 	global $product;
@@ -130,19 +139,19 @@ function fmi_get_featured_menu_item() {
 
 		<div id="product-image1">
 				<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
-				<?php echo $product->get_image('full');?>
+				<?php echo $product->get_image( 'full' ); //phpcs:ignore ?>
 				</a>
 		</div> <!-- End Product Image -->
 
 		<h6><?php //echo $product->get_price_html(); ?></h6>
-		<p><?php echo $product->get_short_description(); ?></p>
+		<p><?php echo esc_html( $product->get_short_description() ); ?></p>
 
 		<div class="add-quantity-box"> 
 					<?php
 					if ( $product->is_type( 'grouped' ) ) {
-						echo fmi_create_group_view( $product );
+						echo fmi_create_group_view( $product ); //phpcs:ignore
 					} else {
-						echo fmi_add_to_cart_button( $product );
+						echo fmi_add_to_cart_button( $product ); //phpcs:ignore
 					}
 					?>
 				</div>
@@ -173,7 +182,7 @@ add_shortcode( 'featured-menu-item', 'fmi_make_feature', 99 );
 /**
  * Display Featured Menu Item by day.
  *
- * @return void
+ * @return string
  */
 function fmi_get_featured_menu_daily( $data ) {
 	global $product;
@@ -208,7 +217,7 @@ function fmi_get_featured_menu_daily( $data ) {
 			<div class="half-side">
 				<div id="product-image1">
 						<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
-						<?php echo $product->get_image( 'full' );?>
+						<?php echo $product->get_image( 'full' ); //phpcs:ignore ?>
 						</a>
 				</div> <!-- End Product Image -->
 			</div>
