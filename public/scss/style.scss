@@ -1,6 +1,6 @@
 /**
  Custom CSS
- Version 1.6.0
+ Version 2.0.0
 
 */
 
@@ -36,7 +36,8 @@
 
 .fmi-daily-container {
    
-   display: flex;   
+   display: flex;
+   flex-direction: column;
    justify-content: center;
    
    .half-side{ 
