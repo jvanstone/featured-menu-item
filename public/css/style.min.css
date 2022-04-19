@@ -16,4 +16,9 @@
 .fmi-container #product-image1{width:100%}
 .fmi-container #product-image1 img{width:100%}
 .fmi-container p{font-size:1rem;line-height:2.1}
+.fmi-daily-container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}
+.fmi-daily-container .half-side{padding:2rem;-ms-flex-preferred-size:100%;flex-basis:100%}
+.fmi-daily-container .half-side h4{margin-top:2rem}
+.fmi-daily-container .half-side .add-quantity-box{margin-top:2rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}
+.fmi-daily-container .half-side .add-quantity-box a{height:50%;-ms-flex-item-align:center;align-self:center}
 }
