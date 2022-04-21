@@ -9,12 +9,12 @@
  * Plugin Name:       Featured Menu Item
  * Plugin URI:        https://vanstoneline.com
  * Description:       To active the pluign use shortcode [featured-menu-item] [featured-menu-daily feature-day="choose-day"]
- * Version:           3.0.0
+ * Version:           3.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Jason Vanstone
  * Author URI:        https://vanstoneline.com
- * Text Domain:       plugin-fmi
+ * Text Domain:       plugin_fmi
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Update URI:        https://example.com/my-plugin/
@@ -155,7 +155,7 @@ function fmi_get_featured_menu_item() {
 					'li'     => array(),
 				);
 				?>
-		<p><?php echo wp_kses( $product->get_description(), $wpkses_arr ); ?></p>
+		<div class="fmi-description"><?php echo wp_kses( $product->get_description(), $wpkses_arr ); ?></div>
 
 
 		<div class="add-quantity-box"> 
@@ -254,7 +254,7 @@ function fmi_get_featured_menu_daily( $data ) {
 					'li'     => array(),
 				);
 				?>
-				<p><?php echo wp_kses( $product->get_description(), $wpkses_arr ); ?></p>
+				<div class="fmi-description"><?php echo wp_kses( $product->get_description(), $wpkses_arr ); ?></div>
 
 				<div class="add-quantity-box"> 
 					<?php
