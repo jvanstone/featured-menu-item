@@ -42,6 +42,29 @@ function fmi_theme_name_scripts() {
 	wp_enqueue_script( 'fmi-add', plugins_url( '/public/js/add-quantity.js', __FILE__ ), array(), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'fmi_theme_name_scripts' );
+
+
+
+/**
+ * Make it so WordPress doesn't remove <p> and <br>
+ *
+ * @param  mixed $init // Get Init Values.
+ * @return array
+ */
+function tinymce_config_59772( $init ) {
+	// Don't remove line breaks.
+	$init['remove_linebreaks'] = false;
+	// Convert newline characters to BR tags.
+	$init['convert_newlines_to_brs'] = true;
+	// Do not remove redundant BR tags.
+	$init['remove_redundant_brs'] = false;
+
+	// Pass $init back to WordPress.
+	return $init;
+}
+add_filter( 'tiny_mce_before_init', 'tinymce_config_59772' );
+
+ 
 /**
  * Get the actual date of the week.
  *
@@ -142,20 +165,8 @@ function fmi_get_featured_menu_item() {
 				<?php echo $product->get_image( 'full' ); //phpcs:ignore ?>
 				</a>
 		</div> <!-- End Product Image -->
-		<?php
-				$wpkses_arr = array(
-					'br'     => array(),
-					'h1'     => array(),
-					'h2'     => array(),
-					'h3'     => array(),
-					'h4'     => array(),
-					'p'      => array(),
-					'strong' => array(),
-					'ul'     => array(),
-					'li'     => array(),
-				);
-				?>
-		<div class="fmi-description"><?php echo wp_kses( $product->get_description(), $wpkses_arr ); ?></div>
+
+		<div class="fmi-description"><?php echo $product->get__short_description(); //phpcs:ignore?></div>
 
 
 		<div class="add-quantity-box"> 
@@ -241,20 +252,8 @@ function fmi_get_featured_menu_daily( $data ) {
 				<h4><?php echo esc_html( $product->get_title() ); ?></h4></a>
 
 
-				<?php
-				$wpkses_arr = array(
-					'br'     => array(),
-					'h1'     => array(),
-					'h2'     => array(),
-					'h3'     => array(),
-					'h4'     => array(),
-					'p'      => array(),
-					'strong' => array(),
-					'ul'     => array(),
-					'li'     => array(),
-				);
-				?>
-				<div class="fmi-description"><?php echo wp_kses( $product->get_description(), $wpkses_arr ); ?></div>
+		
+				<div class="fmi-description"><?php echo $product->get_description(); //phpcs:ignore?></div>
 
 				<div class="add-quantity-box"> 
 					<?php
