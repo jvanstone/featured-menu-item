@@ -142,8 +142,21 @@ function fmi_get_featured_menu_item() {
 				<?php echo $product->get_image( 'full' ); //phpcs:ignore ?>
 				</a>
 		</div> <!-- End Product Image -->
+		<?php
+				$wpkses_arr = array(
+					'br'     => array(),
+					'h1'     => array(),
+					'h2'     => array(),
+					'h3'     => array(),
+					'h4'     => array(),
+					'p'      => array(),
+					'strong' => array(),
+					'ul'     => array(),
+					'li'     => array(),
+				);
+				?>
+		<p><?php echo wp_kses( $product->get_description(), $wpkses_arr ); ?></p>
 
-		<p><?php echo esc_html( $product->get_short_description() ); ?></p>
 
 		<div class="add-quantity-box"> 
 					<?php
@@ -223,10 +236,25 @@ function fmi_get_featured_menu_daily( $data ) {
 			</div>
 
 			<div class="half-side">
+
 				<a href="<?php echo esc_url( get_permalink( $product->id ) ); ?>" title="<?php echo esc_attr( $product->get_title() ); ?>">
 				<h4><?php echo esc_html( $product->get_title() ); ?></h4></a>
 
-				<p><?php echo esc_html( $product->get_short_description() ); ?></p>
+
+				<?php
+				$wpkses_arr = array(
+					'br'     => array(),
+					'h1'     => array(),
+					'h2'     => array(),
+					'h3'     => array(),
+					'h4'     => array(),
+					'p'      => array(),
+					'strong' => array(),
+					'ul'     => array(),
+					'li'     => array(),
+				);
+				?>
+				<p><?php echo wp_kses( $product->get_description(), $wpkses_arr ); ?></p>
 
 				<div class="add-quantity-box"> 
 					<?php
