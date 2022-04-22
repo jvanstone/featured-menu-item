@@ -64,7 +64,7 @@ function tinymce_config_59772( $init ) {
 }
 add_filter( 'tiny_mce_before_init', 'tinymce_config_59772' );
 
- 
+
 /**
  * Get the actual date of the week.
  *
@@ -166,7 +166,7 @@ function fmi_get_featured_menu_item() {
 				</a>
 		</div> <!-- End Product Image -->
 
-		<div class="fmi-description"><?php echo $product->get__short_description(); //phpcs:ignore?></div>
+		<div class="fmi-description"><?php echo $product->get_description(); //phpcs:ignore?></div>
 
 
 		<div class="add-quantity-box"> 
@@ -252,7 +252,6 @@ function fmi_get_featured_menu_daily( $data ) {
 				<h4><?php echo esc_html( $product->get_title() ); ?></h4></a>
 
 
-		
 				<div class="fmi-description"><?php echo $product->get_description(); //phpcs:ignore?></div>
 
 				<div class="add-quantity-box"> 
